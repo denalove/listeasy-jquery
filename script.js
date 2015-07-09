@@ -3,14 +3,27 @@ var template = function(text) {
 };
 
 var main = function() {
-  $('form').submit(function() {
-      
-    
-    
+
+	//Adds new item onto list
+  $('form').on('submit', function() {
+      var text = $('#todo').val();    
+      var html = template(text);
+
+      $('.list').append(html);
+      $("#todo").val("");
     return false;  
-  }
+  });
   
+  // Toggle star color
+  $('.list').on('click', '.glyphicon-star', function() {
+  	$(this).toggleClass('active');
+
+  });
   
+
+  $('.list').on('click', '.glyphicon-remove', function() {
+  	$(this).parent().remove();
+  });
 };
 
 $(document).ready(main);
